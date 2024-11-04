@@ -284,6 +284,15 @@ body {
 body.dark-mode {
   background-color: #121212; /* Mörk bakgrundsfärg */
   color: #ffffff; /* Ljus textfärg */
+
+  h1,h2,h3,h4 {
+    color: #ffffff;
+  }
+
+  .bg-secondary {
+    background-color: #313131;
+  }
+
 }
 
 hr {

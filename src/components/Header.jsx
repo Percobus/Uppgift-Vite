@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 
 const Header = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -16,20 +17,17 @@ const Header = () => {
     localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
     console.log('Mörkt läge:', isDarkMode); // För felsökning
   }, [isDarkMode]);
-  
 
   const toggleTheme = () => {
     setIsDarkMode(prevMode => !prevMode);
   };
 
-
-
   return (
     <header className="header navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
-        <a className="navbar-brand" href="#">
+        <Link className="navbar-brand" to="/">
           <img src="logo.svg" width="47" alt="Silicon logo" /> Silicon
-        </a>
+        </Link>
         <button 
           className="navbar-toggler" 
           type="button" 
@@ -44,9 +42,11 @@ const Header = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link" href="#">Features</a>
+              <NavLink className="nav-link" to="/">Home</NavLink>
             </li>
-            {/* Lägg till fler nav-items här */}
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/contact">Contact</NavLink>
+            </li>
           </ul>
           <div className="form-check form-switch mode-switch pe-lg-1 ms-auto me-4">
             <input 

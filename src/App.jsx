@@ -1,31 +1,23 @@
-import './App.css'
-import Header from './components/Header'
-import Hero from './components/Hero'
-import Features from './components/Features'
-import Faq from './components/Faq'
-import Subscribe from './components/Subscribe'
-import Brands from './components/Brands'
-import Footer from './components/Footer'
-import Testimonials from './components/Testimonials'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './App.css';
+import Home from './views/Home';
+import Contact from './views/Contact';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 function App() {
-
   return (
-    <div>
-      
-        <main className="page-wrapper">
-          <Header />
-          <Hero />
-          <Brands />
-          <Features />
-          <Testimonials />
-          <Faq />
-          <Subscribe />
-          <Footer />
-        </main>
-      
-    </div>
-  )
+    <BrowserRouter>
+      <main className="page-wrapper">
+        <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+      </main>
+      <Footer />
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

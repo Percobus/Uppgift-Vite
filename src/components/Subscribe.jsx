@@ -3,20 +3,46 @@ import React, { useState } from 'react';
 const Subscribe = () => {
   const [email, setEmail] = useState('');
   const [isValid, setIsValid] = useState(true);
+  const [responseMessage, setResponseMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Enkel regex för att kontrollera e-postformatet
+    // Enkel e-postvalidering
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (emailRegex.test(email)) {
       setIsValid(true);
-      // Hantera prenumerationslogik här
-      console.log('Subscribed with email:', email);
-      // Töm inputfältet
-      setEmail('');
+
+      // Skicka e-post till API
+      try {
+        const response = await fetch('https://win24-assignment.azurewebsites.net/api/forms/subscribe', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email }),
+        });
+
+        // Kontrollera om responsen har innehåll innan du läser JSON
+        if (response.ok) {
+          const text = await response.text(); // Hämta responsen som text
+          if (text) {
+            const data = JSON.parse(text); // Försök att parsa texten som JSON
+            setResponseMessage(data.message || 'You have successfully subscribed!');
+          } else {
+            setResponseMessage('You have successfully subscribed!');
+          }
+          setEmail(''); // Töm inputfältet
+        } else {
+          setResponseMessage('Subscription failed. Please try again later.');
+        }
+      } catch (error) {
+        console.error("Fetch error:", error); // Logga fel för nätverksproblem
+        setResponseMessage('An error occurred. Please try again later.');
+      }
     } else {
       setIsValid(false);
+      setResponseMessage(''); // Rensa eventuella tidigare meddelanden
     }
   };
 
@@ -34,22 +60,21 @@ const Subscribe = () => {
           </div>
           <div className="col-xl-5 col-md-6">
             <div className="ps-lg-5 ms-xl-2">
-              <form className="input-group input-group-lg" onSubmit={handleSubmit} noValidate>
+              <form className="input-group input-group-lg needs-validation" noValidate onSubmit={handleSubmit}>
                 <input
                   type="email"
                   id="subscr-email"
-                  className={`form-control rounded-start ps-5 ${isValid ? '' : 'is-invalid'}`}
+                  className={`form-control rounded-start ps-5 ${!isValid ? 'is-invalid' : ''}`}
                   placeholder="Your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
                 <i className="fa-regular fa-envelope fs-xl text-muted position-absolute top-50 start-0 translate-middle-y ms-3 zindex-5"></i>
-                <div className="invalid-tooltip position-absolute top-100 start-0">
-                  Please provide a valid email address.
-                </div>
+                <div className="invalid-tooltip position-absolute top-100 start-0">Please provide a valid email address.</div>
                 <button type="submit" className="btn btn-primary px-sm-4">Subscribe</button>
               </form>
+              {responseMessage && <p className="mt-3">{responseMessage}</p>}
             </div>
           </div>
         </div>

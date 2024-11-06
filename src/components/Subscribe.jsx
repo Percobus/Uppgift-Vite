@@ -70,7 +70,6 @@ const Subscribe = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
-                <i className="fa-regular fa-envelope fs-xl text-muted position-absolute top-50 start-0 translate-middle-y ms-3 zindex-5"></i>
                 <div className="invalid-tooltip position-absolute top-100 start-0">Please provide a valid email address.</div>
                 <button type="submit" className="btn btn-primary px-sm-4">Subscribe</button>
               </form>

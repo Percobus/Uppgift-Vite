@@ -32,7 +32,47 @@
   opacity: 1;
 }
 
-.dark-mode {
+
+.offcanvas-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 75%;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  padding: 1rem;
+  z-index: 1050;
+  display: none;
+}
+
+.offcanvas-menu.open {
+  display: block;
+  transform: translateX(0);
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+@media (max-width: 991.98px) {
+  .offcanvas-menu {
+    display: block;
+  }
+
+  .navbar-collapse.d-lg-flex {
+    display: none !important;
+  }
+}
+
 
 [data-bs-theme=dark] .d-dark-mode-none {
   display: none !important;
@@ -81,7 +121,7 @@
 [data-bs-theme=dark] .light-mode-img {
   display: none;
 }
-}
+
 
 /* stylelint-enable stylistic/value-list-max-empty-lines, stylistic/function-max-empty-lines, stylistic/selector-list-comma-newline-after, declaration-no-important, property-no-vendor-prefix */
 :root,
@@ -282,17 +322,29 @@ body {
 }
 
 body.dark-mode {
-  background-color: #121212; /* Mörk bakgrundsfärg */
-  color: #ffffff; /* Ljus textfärg */
+  background-color: #121212; 
+  color: #ffffff; 
+}
 
-  h1,h2,h3,h4 {
-    color: #ffffff;
-  }
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3, 
+body.dark-mode h4 {
+  color: #ffffff;
+}
 
-  .bg-secondary {
-    background-color: #313131;
-  }
+body.dark-mode .bg-secondary {
+  background-color: #333333 !important; 
+}
 
+body.dark-mode .card {
+  background-color: #2a2a2a !important; 
+}
+
+body.dark-mode .card .form-label,
+body.dark-mode .card .form-control,
+body.dark-mode .card .form-select {
+  color: #ffffff;
 }
 
 hr {

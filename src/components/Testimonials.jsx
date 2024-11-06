@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
 
 const Testimonials = () => {
   const [info, setInfo] = useState([]);
@@ -47,7 +49,7 @@ const Testimonials = () => {
                       <div className="d-flex flex-column h-100 px-2 px-sm-0 mb-0">
                         <div className="card h-100 position-relative border-0 shadow-sm pt-4">
                           <span className="btn btn-icon btn-primary shadow-primary pe-none position-absolute top-0 start-0 translate-middle-y ms-4">
-                            <i className="bx bxs-quote-left"></i>
+                          <FontAwesomeIcon icon={faQuoteLeft} />
                           </span>
                           <blockquote className="card-body pb-4 mb-0">
                             <div className="text-nowrap pt-1 mb-3">

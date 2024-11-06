@@ -1,4 +1,6 @@
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronCircleDown } from '@fortawesome/free-solid-svg-icons';
 
 const Hero = () => {
   return (
@@ -17,7 +19,7 @@ const Hero = () => {
               </div>
               <div className="position-relative d-inline-flex align-items-center justify-content-center justify-content-md-start mt-auto pt-3 pt-md-4 pb-xl-2">
                 <a href="#features" className="btn btn-icon btn-light bg-white stretched-link rounded-circle me-3" data-scroll data-scroll-offset="120" aria-label="Scroll for more">
-                  <i className="fa fa-chevron-down"></i>
+                <FontAwesomeIcon icon={faChevronCircleDown} />
                 </a>
                 <span className="fs-sm">Discover more</span>
               </div>     

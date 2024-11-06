@@ -347,6 +347,14 @@ body.dark-mode .card .form-select {
   color: #ffffff;
 }
 
+body.dark-mode .card .fs-lg,
+body.dark-mode .card .fs-base,
+body.dark-mode .card .fs-sm,
+body.dark-mode .card-footer h6,
+body.dark-mode .card-footer span {
+  color: #ffffff !important;
+}
+
 hr {
   margin: 0 0;
   color: var(--si-border-color);
